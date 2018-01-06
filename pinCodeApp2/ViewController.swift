@@ -8,24 +8,21 @@
 
 import UIKit
 
-var userPinCode = "" // Real Pin Code
+var realPassword = "" // Real Pin Code
 
 class ViewController: UIViewController {
     
     // Vars
     
-    var userPinCodeInput = "" // User Enter This Pin Code
+    var userPasswordInput = "" // User Enter This Pin Code
     
     var userTryPin1 = "" // Try To Save Your Pin Code
     var userTryPin2 = "" // Try To Save Your Pin Code To Save
     
     
-    
-    
     @IBOutlet weak var infoLabel: UILabel!
     
     @IBOutlet weak var actionIconOutlet: UIImageView!
-    
     
     @IBOutlet weak var pinImage1: UIImageView!
     
@@ -41,187 +38,134 @@ class ViewController: UIViewController {
     
     
     @IBAction func button1Action(_ sender: UIButton) {
-        userPinCodeAppend("1")
+        print("1")
+        appendAndCheck("1")
     }
     
     @IBAction func button2Action(_ sender: UIButton) {
-        userPinCodeAppend("2")
+        print("2")
+        appendAndCheck("2")
     }
     
     @IBAction func button3Action(_ sender: UIButton) {
-        userPinCodeAppend("3")
+        print("3")
+        appendAndCheck("3")
     }
     
     @IBAction func button4Action(_ sender: UIButton) {
-        userPinCodeAppend("4")
+        print("4")
+        appendAndCheck("4")
     }
     
     
     @IBAction func button5Action(_ sender: UIButton) {
-        userPinCodeAppend("5")
+        print("5")
+        appendAndCheck("5")
     }
     
     
     @IBAction func button6Action(_ sender: UIButton) {
-        userPinCodeAppend("6")
+        print("6")
+        appendAndCheck("6")
     }
     
     
     @IBAction func button7Action(_ sender: UIButton) {
-        userPinCodeAppend("7")
+        print("7")
+        appendAndCheck("7")
     }
     
     
     @IBAction func button8Action(_ sender: UIButton) {
-        userPinCodeAppend("8")
+        print("8")
+        appendAndCheck("8")
     }
     
     
     @IBAction func button9Action(_ sender: UIButton) {
-        userPinCodeAppend("9")
+        print("9")
+        appendAndCheck("9")
     }
     
     
     @IBAction func button0Action(_ sender: UIButton) {
-        userPinCodeAppend("0")
+        print("0")
+        appendAndCheck("0")
     }
     
     @IBAction func buttonBackAction(_ sender: UIButton) {
-        userPinCodeInput = String(userPinCodeInput.characters.dropLast())
-        print(userPinCodeInput)
+        print("back")
+        
     }
-    
+   
  
     @IBOutlet weak var loginButtonOutlet: UIButton!
     
     
-    func pinImage() {
-        if userPinCodeInput.count == 0 {
-            pinImage1.image = #imageLiteral(resourceName: "deactive")
-            pinImage2.image = #imageLiteral(resourceName: "deactive")
-            pinImage3.image = #imageLiteral(resourceName: "deactive")
-            pinImage4.image = #imageLiteral(resourceName: "deactive")
-        }
-        if userPinCodeInput.count == 1 {
-            pinImage1.image = #imageLiteral(resourceName: "active")
-            pinImage2.image = #imageLiteral(resourceName: "deactive")
-            pinImage3.image = #imageLiteral(resourceName: "deactive")
-            pinImage4.image = #imageLiteral(resourceName: "deactive")
-            
-        }
-        if userPinCodeInput.count == 2 {
-            pinImage1.image = #imageLiteral(resourceName: "active")
-            pinImage2.image = #imageLiteral(resourceName: "active")
-            pinImage3.image = #imageLiteral(resourceName: "deactive")
-            pinImage4.image = #imageLiteral(resourceName: "deactive")
-        }
-        if userPinCodeInput.count == 3 {
-            pinImage1.image = #imageLiteral(resourceName: "active")
-            pinImage2.image = #imageLiteral(resourceName: "active")
-            pinImage3.image = #imageLiteral(resourceName: "active")
-            pinImage4.image = #imageLiteral(resourceName: "deactive")
-        }
-        if userPinCodeInput.count == 4 {
-            pinImage1.image = #imageLiteral(resourceName: "active")
-            pinImage2.image = #imageLiteral(resourceName: "active")
-            pinImage3.image = #imageLiteral(resourceName: "active")
-            pinImage4.image = #imageLiteral(resourceName: "active")
-        }
+    func appendAndCheck(_ input:String) {
+        userPasswordInput += input
         
-    }
-    
-    
-    func saveUserPinCode() 
-    {
-        if userPinCodeInput.count == 4 && userTryPin1 == "" {
-            userTryPin1 = userPinCodeInput
-            userPinCodeInput = ""
-        } else if userPinCodeInput.count == 4 && userTryPin2 == "" {
-            userTryPin2 = userPinCodeInput
-            userPinCodeInput = ""
-        }
-        if userTryPin1.count == 4 && userTryPin2.count == 4 {
-            if userTryPin1 == userTryPin2 {
-                userPinCode = userTryPin1
-            } else {
-                userTryPin1 = ""
-                userTryPin2 = ""
+        if userPasswordInput.count == 4 {
+            if realPassword != "" && realPassword == userPasswordInput {
+                // user pass var ve kaydedilmis
+                loginButtonOutlet.isEnabled = true
+                loginButtonOutlet.backgroundColor = UIColor.green
+                infoView.backgroundColor = UIColor.green
+                print("success")
+                return
+                
+            } else if realPassword != "" && realPassword != userPasswordInput {
+                infoLabel.text = "Sifrenizi Yalnis Girdiniz"
+            } else if realPassword == "" {
+                
+                if userTryPin1 == "" {
+                    userTryPin1 = userPasswordInput
+                    infoLabel.text = "Lutfen Ikinci Kez Giriniz"
+                    print("pin1 kaydedildi")
+                    infoView.backgroundColor = UIColor.clear
+                } else if userTryPin1 != "" && userTryPin2 == "" {
+                    userTryPin2 = userPasswordInput
+                    print("pin 2 kaydedildi")
+                    if userTryPin1 != userTryPin2 {
+                        // eger userpin1 esit degilse userpin2 ye
+                        infoLabel.text = "Girdiginiz Sifreler Uyusmadi"
+                        userTryPin1 = ""
+                        userTryPin2 = ""
+                        infoView.backgroundColor = UIColor.red
+                        print("User pin 1 pin 2 ye esit degil")
+                    } else if userTryPin1 == userTryPin2 {
+                        realPassword = userTryPin1
+                        infoView.backgroundColor = UIColor.yellow
+                        print("pin kaydedildi")
+                    }
+                }
             }
+            userPasswordInput = ""
         }
-    }
-    
-    
-    func passCodeCheck() {
-        
-        print("User Pin Code : \(userPinCode)")
-        print("User Pin Input Code : \(userPinCodeInput)")
-        print("User Try 1 Pin Code : \(userTryPin1)")
-        print("User Try 2 Pin Code : \(userTryPin2)")
-        print("--------------")
-        if userPinCode == "" {
-            saveUserPinCode()
-        }
-        else if userPinCodeInput.count == 4 && userPinCode == userPinCodeInput {
-            loginButtonOutlet.isEnabled = true
-            successView.isHidden = false
-        } else if userPinCodeInput.count == 4 {
-            print("Code Dogru Degil")
-            userPinCodeInput = ""
-        }
-    }
-    
-    
-    
-    func userPinCodeAppend(_ userPin:String) {
-        if userPinCodeInput.count < 4 {
-            userPinCodeInput += userPin
-        }
-        passCodeCheck()
-        informationLabelFunc()
-    }
-    
-    func informationLabelFunc() {
        
-        if userPinCode == "" {
-            infoLabel.text = "Lutfen Pin Code Olusturunuz"
-            
-        }
-        
-        
-        if userPinCode != "" {
-            infoLabel.text = "Lutfen Pin Codunuzu Giriniz"
-            return
-        }
-        
-        if userPinCodeInput.count == 4 && (userPinCode != userPinCodeInput) {
-            infoLabel.text = "Pin Code Hatali"
-            return
-        }
-        
-        
-        if userTryPin1 != "" {
-            infoLabel.text = "Lutfen Pin Cod'u Tekrar Girin"
-            return
-        }
-        
-        if userTryPin1 != userTryPin2 {
-            infoLabel.text = "Girdiginiz Pin Code Eslesmedi!"
-            return
-        }
-        
-        
-        
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loginButtonOutlet.isEnabled = false
-        informationLabelFunc()
+        loginButtonOutlet.backgroundColor = UIColor.gray
+        
+        if realPassword != "" {
+            infoLabel.text = "Sifreyi giriniz"
+            
+        } else {
+            infoLabel.text = "Lutfen Sifrenizi Olusturunuz"
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+        
         // Dispose of any resources that can be recreated.
     }
 
