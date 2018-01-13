@@ -308,6 +308,7 @@
                     </view>
                     <connections>
                         <outlet property="addTextFieldOutlet" destination="K4D-rK-djh" id="PTh-2w-SQM"/>
+                        <outlet property="button" destination="Ugb-Vb-HQm" id="Btd-BN-YQ6"/>
                         <outlet property="progressBarOutlet" destination="MAu-e6-RCQ" id="3mQ-jy-7jN"/>
                         <outlet property="segmentControllerOutlet" destination="4lV-DX-1wb" id="48X-Iv-B8g"/>
                         <outlet property="showHobbyOrPhobiaOutlet" destination="eG3-Qa-Jl8" id="4W5-Wz-puL"/>

@@ -103,12 +103,12 @@
 			children = (
 				92FE6C3A1FF8EC4C0049EBA8 /* AppDelegate.swift */,
 				92FE6C3C1FF8EC4C0049EBA8 /* ViewController.swift */,
+				9240ED4B2000CE3C00BA67E0 /* SecondViewController.swift */,
 				92FE6C3E1FF8EC4C0049EBA8 /* Main.storyboard */,
 				92FE6C411FF8EC4C0049EBA8 /* Assets.xcassets */,
 				92FE6C431FF8EC4C0049EBA8 /* LaunchScreen.storyboard */,
 				92FE6C461FF8EC4C0049EBA8 /* Info.plist */,
 				9240ED492000C88F00BA67E0 /* passwordCheck.swift */,
-				9240ED4B2000CE3C00BA67E0 /* SecondViewController.swift */,
 			);
 			path = pinCodeApp2;
 			sourceTree = "<group>";
