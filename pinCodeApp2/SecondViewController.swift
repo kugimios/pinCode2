@@ -8,8 +8,33 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
 
+
+class SecondViewController: UIViewController {
+    
+    @IBAction func segmentAction(_ sender: UISegmentedControl) {
+    }
+    @IBOutlet weak var progressBarOutlet: UIProgressView!
+    
+    @IBOutlet weak var segmentControllerOutlet: UISegmentedControl!
+    
+    
+    @IBOutlet weak var addTextFieldOutlet: UITextField!
+    
+    @IBAction func addButtonAction(_ sender: UIButton) {
+        // progressBarOutlet.progress = 0.1
+        progressBarOutlet.progress += 0.1
+        print(progressBarOutlet.progress)
+        segmentControllerOutlet.selectedSegmentIndex = 1
+        
+    }
+    
+    
+    
+    
+    @IBOutlet weak var showHobbyOrPhobiaOutlet: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
